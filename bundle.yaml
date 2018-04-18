@@ -1,0 +1,28 @@
+﻿series: xenial
+applications:
+  arangodb:
+    charm: 'cs:arangodb-0'
+    num_units: 1
+    annotations:
+      gui-x: '558'
+      gui-y: '355'
+    to:
+      - '0'
+  sojobo-api:
+    charm: 'local:xenial/sojobo-api'
+    num_units: 1
+    annotations:
+      gui-x: '968'
+      gui-y: '367'
+    to:
+      - '1'
+relations:
+  - - 'sojobo-api:arango'
+    - 'arangodb:db'
+machines:
+  '0':
+    series: xenial
+    constraints: arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240
+  '1':
+    series: xenial
+    constraints: arch=amd64 cpu-cores=1 cpu-power=138 mem=1700 root-disk=10240
